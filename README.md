@@ -6,6 +6,6 @@ Configure file config.properties
   bloodstonePath = path your bloodstone inslation
 
 To run you nead Java JDK 21 ++ https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html
-Affter install jdk, execute file 'extractir.bat' and you can see folder sprites64 and spritesObj
+Affter install jdk, execute file 'extractor.bat' and you can see folder sprites64 and spritesObj
 
 Finish
