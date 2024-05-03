@@ -172,7 +172,7 @@ public class Main {
                     }
                     value
                             .parallelStream()
-                            .filter(ob -> ob.getActionByPositions().size() > 1)
+                            .filter(ob -> !ob.getActionByPositions().isEmpty())
                             .forEach(ob -> ob
                                     .getActionByPositions()
                                     .parallelStream()
