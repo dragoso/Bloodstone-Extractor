@@ -219,24 +219,8 @@ public class Main {
                                                         .toList();
 
                                                 if (!listOfList.isEmpty()) {
-
-                                                    File objectPath = new File(typePath, String.valueOf(ob.getId()));
-                                                    if (!objectPath.exists() || objectPath.isDirectory()) {
-                                                        objectPath.mkdir();
-                                                    }
-
-                                                    File actionPath = new File(objectPath, String.valueOf(key2));
-                                                    if (!actionPath.exists() || actionPath.isDirectory()) {
-                                                        actionPath.mkdir();
-                                                    }
-
-                                                    File directionPath = new File(actionPath, String.valueOf(key1));
-                                                    if (!directionPath.exists() || directionPath.isDirectory()) {
-                                                        directionPath.mkdir();
-                                                    }
-                                                    createImageGrid(listOfList, directionPath);
-                                                    createGif(listOfList, directionPath.getPath() + "/output.gif", 150);
-
+                                                    createImageGrid(listOfList, typePath, ob.getId() + "-" + key2 + "-" + key1 + ".png");
+                                                    createGif(listOfList, typePath.getPath() + ob.getId() + "-" + key2 + "-" + key1 + ".gif", 150);
                                                 }
 
                                             })));
@@ -260,11 +244,11 @@ public class Main {
         encoder.finish();
     }
 
-    public static void createImageGrid(List<BufferedImage> images, File file) {
+    public static void createImageGrid(List<BufferedImage> images, File file, String name) {
         int count = images.size();
         int size = (int) Math.ceil(Math.sqrt(count));
-        int width = images.get(0).getWidth();
-        int height = images.get(0).getHeight();
+        int width = images.getFirst().getWidth();
+        int height = images.getFirst().getHeight();
 
         BufferedImage combined = new BufferedImage(size * width, size * height, BufferedImage.TYPE_INT_ARGB);
 
@@ -285,7 +269,7 @@ public class Main {
         g2d.dispose();
 
         try {
-            ImageIO.write(combined, "PNG", new File(file, "combined.png"));
+            ImageIO.write(combined, "PNG", new File(file, name));
         } catch (IOException e) {
             e.printStackTrace();
         }
